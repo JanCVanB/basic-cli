@@ -21,6 +21,7 @@ use std::{env, io};
 use tokio::runtime::Runtime;
 
 mod glue;
+mod glue2;
 
 thread_local! {
    static TOKIO_RUNTIME: Runtime = tokio::runtime::Builder::new_current_thread()
@@ -1305,4 +1306,10 @@ pub extern "C" fn roc_fx_getLocales() -> RocList<RocStr> {
         roc_locales.push(l.to_string().as_str().into());
     }
     roc_locales
+}
+
+#[no_mangle]
+pub extern "C" fn roc_fx_sendZeroedStruct(sad: glue2::ZeroedStruct) -> RocResult<(), RocStr> {
+    println!("🦀 sad: {sad:?}");
+    RocResult::ok(())
 }

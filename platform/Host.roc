@@ -45,6 +45,8 @@ hosted Host
         tempDir!,
         getLocale!,
         getLocales!,
+        ZeroedStruct,
+        sendZeroedStruct!,
     ]
     imports [
         InternalHttp.{ Request, InternalResponse },
@@ -131,3 +133,11 @@ tempDir! : {} => List U8
 
 getLocale! : {} => Result Str {}
 getLocales! : {} => List Str
+
+ZeroedStruct : {
+    foo : U8,
+    bar : U8,
+    baz : U8,
+}
+
+sendZeroedStruct! : ZeroedStruct => Result {} Str
