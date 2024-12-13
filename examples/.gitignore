@@ -22,3 +22,6 @@ stdin
 task-list
 tcp-client
 time
+
+bug_repro*
+!*.roc

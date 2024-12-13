@@ -45,6 +45,13 @@ hosted Host
         tempDir!,
         getLocale!,
         getLocales!,
+        fluff,
+        HappyPayloadlessTag,
+        SadPayloadfulTag,
+        SadPayloadfulTagFluffed,
+        sendHappyPayloadlessTag!,
+        sendSadPayloadfulTag!,
+        sendSadPayloadfulTagFluffed!,
     ]
     imports [
         InternalHttp.{ Request, InternalResponse },
@@ -132,3 +139,15 @@ setCwd! : List U8 => Result {} {}
 # If we encounter a Unicode error in any of the args, it will be replaced with
 # the Unicode replacement char where necessary.
 args! : {} => List Str
+
+Fluff : { a : U64, b : U64, c : U64, d : U64 }
+fluff : Fluff
+fluff = { a: 0, b: 0, c: 0, d: 0 }
+
+HappyPayloadlessTag : [Foo, Bar, Baz]
+SadPayloadfulTag : [Foo U8, Bar, Baz]
+SadPayloadfulTagFluffed : [Foo U8 Fluff, Bar, Baz]
+
+sendHappyPayloadlessTag! : HappyPayloadlessTag => Result {} Str
+sendSadPayloadfulTag! : SadPayloadfulTag => Result {} Str
+sendSadPayloadfulTagFluffed! : SadPayloadfulTagFluffed => Result {} Str

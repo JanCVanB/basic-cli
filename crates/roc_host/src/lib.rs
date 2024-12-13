@@ -9,6 +9,8 @@ use roc_std::{ReadOnlyRocList, ReadOnlyRocStr, RocBox, RocList, RocResult, RocSt
 use std::sync::OnceLock;
 use tokio::runtime::Runtime;
 
+mod glue2;
+
 thread_local! {
    static TOKIO_RUNTIME: Runtime = tokio::runtime::Builder::new_current_thread()
        .enable_io()
@@ -615,4 +617,28 @@ pub extern "C" fn roc_fx_getLocale() -> RocResult<RocStr, ()> {
 #[no_mangle]
 pub extern "C" fn roc_fx_getLocales() -> RocList<RocStr> {
     roc_env::get_locales()
+}
+
+#[no_mangle]
+pub extern "C" fn roc_fx_sendHappyPayloadlessTag(
+    tag: glue2::HappyPayloadlessTag,
+) -> RocResult<(), RocStr> {
+    println!("🦀 tag: {tag:?}");
+    RocResult::ok(())
+}
+
+#[no_mangle]
+pub extern "C" fn roc_fx_sendSadPayloadfulTag(
+    tag: glue2::SadPayloadfulTag,
+) -> RocResult<(), RocStr> {
+    println!("🦀 tag: {tag:?}");
+    RocResult::ok(())
+}
+
+#[no_mangle]
+pub extern "C" fn roc_fx_sendSadPayloadfulTagFluffed(
+    tag: &glue2::SadPayloadfulTagFluffed,
+) -> RocResult<(), RocStr> {
+    println!("🦀 tag: {tag:?}");
+    RocResult::ok(())
 }
