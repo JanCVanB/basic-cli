@@ -22,6 +22,10 @@ use roc_std::RocRefcounted;
 #[derive(Clone, Copy, Default, Debug, PartialEq, PartialOrd, Eq, Ord, Hash)]
 #[repr(C)]
 pub struct ZeroedStruct {
+    pub fluff1: u64,
+    pub fluff2: u64,
+    pub fluff3: u64,
+    pub fluff4: u64,
     pub bar: u8,
     pub baz: u8,
     pub foo: u8,

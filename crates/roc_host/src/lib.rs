@@ -1309,7 +1309,7 @@ pub extern "C" fn roc_fx_getLocales() -> RocList<RocStr> {
 }
 
 #[no_mangle]
-pub extern "C" fn roc_fx_sendZeroedStruct(sad: glue2::ZeroedStruct) -> RocResult<(), RocStr> {
+pub extern "C" fn roc_fx_sendZeroedStruct(sad: &glue2::ZeroedStruct) -> RocResult<(), RocStr> {
     println!("🦀 sad: {sad:?}");
     RocResult::ok(())
 }

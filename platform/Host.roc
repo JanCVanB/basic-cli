@@ -138,6 +138,10 @@ ZeroedStruct : {
     foo : U8,
     bar : U8,
     baz : U8,
+    fluff1 : U64,
+    fluff2 : U64,
+    fluff3 : U64,
+    fluff4 : U64,
 }
 
 sendZeroedStruct! : ZeroedStruct => Result {} Str
